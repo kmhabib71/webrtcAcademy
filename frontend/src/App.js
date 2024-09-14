@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import AuthProvider from "./pages/Auth/AuthProvider";
 import Logout from "./pages/Auth/Logout";
 import Admin from "./pages/Admin/Admin";
+import CourseDetails from "./pages/CourseDetails/CourseDetails";
 function App() {
   return (
     <AuthProvider>
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/courses" element={<CourseDetails />} />
           <Route path="/Admin/*" element={<Admin />} />
         </Routes>
       </Router>

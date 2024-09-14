@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../../components/Header/Header";
 import HeroSection from "./HeroSection";
 import ValuePropositionSection from "./ValuePropositionSection";
 import CoursesOverviewSection from "./CoursesOverviewSection";
