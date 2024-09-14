@@ -8,7 +8,7 @@ import HowItWorksSection from "./HowItWorksSection";
 import FeaturedResourcesSection from "./FeaturedResourcesSection";
 import CommunitySupportSection from "./CommunitySupportSection";
 import CallToActionSection from "./CallToActionSection";
-
+// sss
 import Footer from "./Footer";
 
 function Home() {
