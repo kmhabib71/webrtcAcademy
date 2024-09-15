@@ -9,7 +9,7 @@ import FeaturedResourcesSection from "./FeaturedResourcesSection";
 import CommunitySupportSection from "./CommunitySupportSection";
 import CallToActionSection from "./CallToActionSection";
 // sss
-import Footer from "./Footer";
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
   return (

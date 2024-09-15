@@ -88,7 +88,7 @@ const Header = () => {
             initial="hidden"
             animate="visible">
             <MotionLink
-              to="/developer-path"
+              to="/webrtc-job-roadmap"
               className="text-gray-900"
               variants={menuItemVariants}
               whileHover="hover">
@@ -148,7 +148,7 @@ const Header = () => {
         variants={mobileMenuVariants}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <MotionLink
-            to="/developer-path"
+            to="/webrtc-job-roadmap"
             className="block text-gray-900 hover:text-red-500"
             variants={menuItemVariants}
             onClick={closeMenu}>

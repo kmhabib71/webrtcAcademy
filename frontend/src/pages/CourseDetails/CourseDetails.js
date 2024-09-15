@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Header from "../../components/Header/Header";
-import Footer from "../Home/Footer";
+import Footer from "../../components/Footer/Footer";
 import CourseHeroSection from "./CourseHeroSection";
 import CourseOverviewSection from "./CourseOverviewSection";
 import CurriculumSection from "./CurriculumSection";
