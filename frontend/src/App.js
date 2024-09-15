@@ -12,6 +12,9 @@ import Logout from "./pages/Auth/Logout";
 import Admin from "./pages/Admin/Admin";
 import CourseDetails from "./pages/CourseDetails/CourseDetails";
 import JobRoadMap from "./pages/JobRoadMap/index";
+import StartBusiness from "./pages/StartBusiness/index";
+import CoursesPage from "./pages/AllCourses/CoursesPage";
+import Blog from "./pages/Blogs/Index.js";
 function App() {
   return (
     <AuthProvider>
@@ -22,8 +25,11 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/courses" element={<CourseDetails />} />
+          <Route path="/courses" element={<CoursesPage />} />
           <Route path="/webrtc-job-roadmap" element={<JobRoadMap />} />
+          <Route path="/start-business" element={<StartBusiness />} />
+          <Route path="/course-details" element={<CourseDetails />} />
+          <Route path="/insights" element={<Blog />} />
           <Route path="/Admin/*" element={<Admin />} />
         </Routes>
       </Router>
