@@ -15,6 +15,7 @@ import JobRoadMap from "./pages/JobRoadMap/index";
 import StartBusiness from "./pages/StartBusiness/index";
 import CoursesPage from "./pages/AllCourses/CoursesPage";
 import Blog from "./pages/Blogs/Index.js";
+import Profile from "./pages/Profile/Index.js";
 import CoursesInPage from "./pages/CoursePage/Index.js";
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/course-details" element={<CourseDetails />} />
           <Route path="/insights" element={<Blog />} />
           <Route path="/coursepage" element={<CoursesInPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/Admin/*" element={<Admin />} />
         </Routes>
       </Router>

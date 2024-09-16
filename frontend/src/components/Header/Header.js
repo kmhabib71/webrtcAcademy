@@ -1,14 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../pages/Auth/AuthProvider";
 
 const MotionLink = motion(Link);
 
-const Header = () => {
+const Header = ({ onLoginClick, onSignUpClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null);
+
+  const { isLoggedIn, authUser, logout } = useContext(AuthContext);
+
+  // Animation Variants
+  const menuItemVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hover: { scale: 1.1, color: "#EF4444" }, // Red-500 in Tailwind
+  };
+
+  const mobileMenuVariants = {
+    closed: { opacity: 0, x: -300 },
+    open: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+  };
 
   // Toggle the mobile menu
   const toggleMenu = () => {
@@ -28,10 +43,8 @@ const Header = () => {
       }
     };
 
-    // Add event listener
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Clean up the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -53,23 +66,11 @@ const Header = () => {
     };
   }, []);
 
-  // Framer Motion variants
-  const menuItemVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    hover: { scale: 1.1, color: "#EF4444" }, // Red-500 in Tailwind
-  };
-
-  const mobileMenuVariants = {
-    closed: { opacity: 0, x: -300 },
-    open: { opacity: 1, x: 0, transition: { duration: 0.3 } },
-  };
-
   return (
     <header className="fixed w-full z-30">
       {/* Background Layer */}
       <div
-        className={` hidden md:block absolute inset-0 transition-all duration-300 pointer-events-none ${
+        className={`hidden md:block absolute inset-0 transition-all duration-300 pointer-events-none ${
           isScrolled ? "bg-white opacity-70 backdrop-blur-sm" : "bg-transparent"
         }`}></div>
 
@@ -84,7 +85,7 @@ const Header = () => {
             <img src="./svg/logo.svg" alt="Logo" className="h-8 w-auto" />
           </MotionLink>
           <motion.div
-            className="hidden md:flex space-x-8 items-center"
+            className="hidden md:flex space-x-4 items-center"
             initial="hidden"
             animate="visible">
             <MotionLink
@@ -115,11 +116,38 @@ const Header = () => {
               whileHover="hover">
               Insights
             </MotionLink>
-            <motion.button
-              className="bg-red-500 text-white px-4 py-2 rounded-md"
-              whileHover={{ scale: 1.05 }}>
-              Login
-            </motion.button>
+
+            {isLoggedIn ? (
+              <>
+                <MotionLink
+                  to="/profile"
+                  className="bg-indigo-500 text-white px-4 py-2 rounded-md"
+                  whileHover={{ scale: 1.05 }}>
+                  Profile
+                </MotionLink>
+                <motion.button
+                  onClick={logout}
+                  className="bg-red-500 text-white px-4 py-2 rounded-md"
+                  whileHover={{ scale: 1.05 }}>
+                  Logout
+                </motion.button>
+              </>
+            ) : (
+              <>
+                <motion.button
+                  className="bg-red-500 text-white px-4 py-2 rounded-md"
+                  whileHover={{ scale: 1.05 }}
+                  onClick={onLoginClick}>
+                  Login
+                </motion.button>
+                <motion.button
+                  className="border border-[#71aa9c] text-black px-4 py-2 rounded-md"
+                  whileHover={{ scale: 1.05 }}
+                  onClick={onSignUpClick}>
+                  Sign Up
+                </motion.button>
+              </>
+            )}
           </motion.div>
           <motion.div
             className="flex md:hidden"
@@ -142,7 +170,7 @@ const Header = () => {
       {/* Mobile Menu */}
       <motion.div
         ref={menuRef}
-        className={`md:hidden z-20 ${isOpen ? "block" : "hidden"}`}
+        className={`md:hidden z-20 ${isOpen ? "block" : "hidden"} bg-white`}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={mobileMenuVariants}>
@@ -175,12 +203,47 @@ const Header = () => {
             onClick={closeMenu}>
             Insights
           </MotionLink>
-          <motion.button
-            className="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-2"
-            whileHover={{ scale: 1.05 }}
-            onClick={closeMenu}>
-            Login
-          </motion.button>
+
+          {isLoggedIn ? (
+            <>
+              <MotionLink
+                to="/profile"
+                className="block text-indigo-500 hover:text-indigo-700"
+                onClick={closeMenu}>
+                Profile
+              </MotionLink>
+              <motion.button
+                className="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-2"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => {
+                  closeMenu();
+                  logout();
+                }}>
+                Logout
+              </motion.button>
+            </>
+          ) : (
+            <>
+              <motion.button
+                className="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-2"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => {
+                  closeMenu();
+                  onLoginClick();
+                }}>
+                Login
+              </motion.button>
+              <motion.button
+                className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-2"
+                whileHover={{ scale: 1.05 }}
+                onClick={() => {
+                  closeMenu();
+                  onSignUpClick();
+                }}>
+                Sign Up
+              </motion.button>
+            </>
+          )}
         </div>
       </motion.div>
     </header>

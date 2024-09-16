@@ -8,14 +8,14 @@ function RegisterForm({
   showPassword,
   setShowPassword,
   onSubmit,
-  onSignInClick, // Add this prop
+  onSignInClick,
 }) {
   return (
     <form
       onSubmit={onSubmit}
       className="w-full max-w-sm bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div className="flex justify-center items-center">
-        <img src="./svg/Fulltalk.svg" alt="Logo" />
+      <div className="flex justify-center items-center mb-6">
+        <img src="./svg/logo.svg" alt="Logo" className=" h-14" />
       </div>
       <TextInput
         type="email"
@@ -54,18 +54,18 @@ function RegisterForm({
       />
       <span className="text-xs text-gray-400 mt-1">
         Password must contain at least 8 characters, one uppercase, one
-        lowercase, one number and one special character.
+        lowercase, one number, and one special character.
       </span>
       <button
         type="submit"
-        className="bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none mt-4 w-full">
+        className="bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none mt-4 w-full">
         Sign Up
       </button>
       <p className="text-sm mt-4 mb-4">
         Have an account?
         <button
           type="button"
-          onClick={onSignInClick} // Use the click handler to switch modals
+          onClick={onSignInClick}
           className="font-bold ml-2 bg-gradient-to-r from-violet-500 to-cyan-300 text-transparent bg-clip-text">
           Sign In
         </button>

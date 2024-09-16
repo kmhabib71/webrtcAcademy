@@ -31,10 +31,18 @@ const AuthProvider = ({ children }) => {
     setAuthUser(user);
   };
 
-  const logout = () => {
-    setIsLoggedIn(false);
-    setAuthUser(null);
+  const logout = async () => {
+    try {
+      await axios.get(`${backendUrl}/api/auth/logout`, {
+        withCredentials: true,
+      });
+      setIsLoggedIn(false);
+      setAuthUser(null);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
+
   return (
     <AuthContext.Provider
       value={{ isLoggedIn, authUser, loading, login, logout }}>

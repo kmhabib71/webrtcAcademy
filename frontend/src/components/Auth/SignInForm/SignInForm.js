@@ -14,9 +14,9 @@ function SignInForm({
     <form
       onSubmit={onSubmit}
       className="w-full max-w-sm bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div className="flex justify-center items-center">
-        {/* <img src="./svg/Fulltalk.svg" alt="Logo" /> */}
-        <p className=" text-4xl font-bold mb-8">OmeLive</p>
+      <div className="flex justify-center items-center mb-6">
+        <img src="./svg/logo.svg" alt="Logo" className=" h-14" />
+        {/* <p className=" text-4xl font-bold mb-8">OmeLive</p> */}
       </div>
       <TextInput
         type="email"
@@ -39,7 +39,7 @@ function SignInForm({
       />
       <button
         type="submit"
-        className="bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none mt-4 w-full">
+        className="bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none mt-4 w-full">
         Sign In
       </button>
 
