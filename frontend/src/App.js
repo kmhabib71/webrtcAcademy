@@ -15,6 +15,7 @@ import JobRoadMap from "./pages/JobRoadMap/index";
 import StartBusiness from "./pages/StartBusiness/index";
 import CoursesPage from "./pages/AllCourses/CoursesPage";
 import Blog from "./pages/Blogs/Index.js";
+import CoursesInPage from "./pages/CoursePage/Index.js";
 function App() {
   return (
     <AuthProvider>
@@ -30,6 +31,7 @@ function App() {
           <Route path="/start-business" element={<StartBusiness />} />
           <Route path="/course-details" element={<CourseDetails />} />
           <Route path="/insights" element={<Blog />} />
+          <Route path="/coursepage" element={<CoursesInPage />} />
           <Route path="/Admin/*" element={<Admin />} />
         </Routes>
       </Router>
